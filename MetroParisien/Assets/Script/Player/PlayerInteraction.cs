@@ -22,10 +22,14 @@ public class PlayerInteraction : MonoBehaviour
     public void GetInteractibleObject()
     {
         Collider[] objects = Physics.OverlapCapsule(originDetection.position, originDetection.position + (originDetection.forward * lenghtDetection), raduisDetection, maskDetection);
-        if (objects.Length == 0) return;
+        if (objects.Length == 0) {
+			interactibleObject = null;
+			return;	
+		} 
         foreach (var item in objects)
         {
             interactibleObject = item.GetComponent<IInteractible>();
+			Debug.Log(interactibleObject);
             if (interactibleObject != null) return;
         }
     }

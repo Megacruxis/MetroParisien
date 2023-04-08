@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 239389449}
   - component: {fileID: 239389453}
   - component: {fileID: 239389454}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WallButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorManager: {fileID: 11400000, guid: 36963e3781d5078fa92b23b723344921, type: 2}
-  InteractRange: 2
 --- !u!54 &239389454
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -266,7 +265,7 @@ GameObject:
   - component: {fileID: 274969683}
   - component: {fileID: 274969688}
   - component: {fileID: 274969687}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Crate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +343,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274969682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.36, y: 1, z: -0.87}
+  m_LocalPosition: {x: 2.36, y: 1.59, z: -0.87}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -377,7 +376,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!1 &348773871
 GameObject:
@@ -1108,7 +1107,7 @@ GameObject:
   - component: {fileID: 1991904284}
   - component: {fileID: 1991904288}
   - component: {fileID: 1991904289}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FloorButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
