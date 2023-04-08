@@ -54,7 +54,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         pMovement.Move(characController,pInput.GetMovementDirection());
-        
+        pInteraction.GetInteractibleObject();
+        pInteraction.Interact();
     }
 
 

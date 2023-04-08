@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float minValueToAccel;
     private float currentSpeed;
     private Vector3 movementValue;
+    public bool canMove;
 
     [Header("Gravity")]
     [SerializeField] private float gravityValue;
@@ -41,10 +42,12 @@ public class PlayerMovement : MonoBehaviour
         isJumping = false;
         jumpTime = 0;
         movementValue = Vector3.zero;
+        canMove = true;
     }
 
     public void Move(CharacterController chara,Vector3 direction)
     {
+        if (!canMove) return;
         Movement(direction);
         Gravity();
         Jump();

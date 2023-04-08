@@ -6,15 +6,16 @@ public class FloorButton : MonoBehaviour, IButton
 {
 	[SerializeField] private OpenableManager doorManager;
 
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
 	{
-		if (collision.gameObject.layer!=12)
+
+		if (other.gameObject.layer!=12)
 			doorManager.InteractWithDoor();
 	}
 
-	void OnCollisionExit(Collision collisionInfo)
+    private void OnTriggerExit(Collider other)
 	{
-		if (collisionInfo.gameObject.layer!=12)
+		if (other.gameObject.layer!=12)
 			doorManager.InteractWithDoor();
 	}
 }
