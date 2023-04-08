@@ -9,20 +9,20 @@ public class Door : MonoBehaviour, IOpenable
 
 	void Awake()
 	{
-		doorManager.OpenableManagerButtonIsClicked.AddListener(OpenDoor);
+		doorManager.dispatchedEvents[0].AddListener(OpenDoor);
 	}
 
 	private void OpenDoor()
 	{
 		gameObject.transform.position += new Vector3(0, DoorSize, 0);
-		doorManager.OpenableManagerButtonIsClicked.RemoveListener(OpenDoor);
-		doorManager.OpenableManagerButtonIsClicked.AddListener(CloseDoor);
+		doorManager.dispatchedEvents[0].RemoveListener(OpenDoor);
+		doorManager.dispatchedEvents[0].AddListener(CloseDoor);
 	}
 
 	private void CloseDoor()
 	{
 		gameObject.transform.position -= new Vector3(0, DoorSize, 0);
-		doorManager.OpenableManagerButtonIsClicked.RemoveListener(CloseDoor);
-		doorManager.OpenableManagerButtonIsClicked.AddListener(OpenDoor);
+		doorManager.dispatchedEvents[0].RemoveListener(CloseDoor);
+		doorManager.dispatchedEvents[0].AddListener(OpenDoor);
 	}
 }

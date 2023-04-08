@@ -14,7 +14,6 @@ public class MonsterController : MonoBehaviour
 
     void Awake()
     {
-
         if(targetPostion == null)
         {
             Debug.LogError("Missing reference to targetPosition of type Vector3");

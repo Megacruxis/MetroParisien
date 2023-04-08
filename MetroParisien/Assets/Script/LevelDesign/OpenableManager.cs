@@ -3,18 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "New OpenableManager", menuName = "OpenableManager")]
-public class OpenableManager : ScriptableObject
+[CreateAssetMenu(fileName = "New OpenableManager", menuName = "EventDispatcher/OpenableManager")]
+public class OpenableManager : EventDispatcherScriptable
 {
-	public UnityEvent OpenableManagerButtonIsClicked;
-
-	private void OnEnable()
-	{
-		OpenableManagerButtonIsClicked = new UnityEvent();
-	}
-
 	public void InteractWithDoor()
 	{
-		OpenableManagerButtonIsClicked.Invoke();
+		DispatchEvent(0);
 	}
 }
