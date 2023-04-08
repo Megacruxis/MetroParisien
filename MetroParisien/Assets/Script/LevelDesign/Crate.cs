@@ -4,18 +4,79 @@ using UnityEngine;
 
 public class Crate : MonoBehaviour ,IInteractible
 {
-	private bool playerInRange;
+    [Header("Movement")]
+    [SerializeField] private float distanceMovement;
+    [SerializeField] private float vitesseMovement;
+    [SerializeField] private Rigidbody rigid;
 
-    public bool isActive { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    [Header("Direction Check")]
+    [SerializeField] private Transform checkOrigin;
+    [SerializeField] private float checkLenght;
+    [SerializeField] private float checkRaduis;
+    [SerializeField] private LayerMask playerMask;
+
+    [Header("MovementCheck")]
+    [SerializeField] private float movementRaduisCheck;
+	
+    public bool isActive { get ; set ; }
 
     public void Activate()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Start");
+        Vector3 directionToMove = GetMoveDirection();
+        Debug.Log(directionToMove);
+        if (CheckIfCrateCanMove(directionToMove))
+        {
+            Debug.Log("StartCoroutine");
+            StartCoroutine(MovingCrate(directionToMove));
+        }
+        
     }
 
     public void Disable()
     {
-        throw new System.NotImplementedException();
+        isActive = false;
+    }
+
+    public bool CheckIfCrateCanMove(Vector3 direction)
+    {
+        if(direction==Vector3.zero)return false;
+        else
+        {
+            if (Physics.CheckSphere(checkOrigin.position + direction * distanceMovement, movementRaduisCheck)) return false;
+            return true;
+        }
+    }
+
+    public Vector3 GetMoveDirection()
+    {
+        //le joueur est a droite renvoie gauche
+        if (Physics.CheckCapsule(checkOrigin.position, checkOrigin.position + transform.right, checkRaduis, playerMask)) return -transform.right;
+        //le joueur est a gauche renvoie droite
+        else if (Physics.CheckCapsule(checkOrigin.position, checkOrigin.position - transform.right, checkRaduis, playerMask)) return transform.right;
+        //le joueur est devant renvoie derrier
+        else if (Physics.CheckCapsule(checkOrigin.position, checkOrigin.position + transform.forward, checkRaduis, playerMask)) return -transform.forward;
+        //Le joueur est derrier renvoie devant
+        else if (Physics.CheckCapsule(checkOrigin.position, checkOrigin.position - transform.forward, checkRaduis, playerMask)) return transform.forward;
+        //le joueur est nulle part
+        return Vector3.zero;
+    }
+
+
+    public IEnumerator MovingCrate(Vector3 Direction)
+    {
+        isActive = true;
+        Vector3 newPoint = transform.position + Direction * distanceMovement;
+        rigid.isKinematic = true;
+        Debug.Log("Start Moving");
+        while (Vector3.Distance(newPoint,transform.position)>0.05f)
+        {
+            transform.Translate(Direction * vitesseMovement * Time.deltaTime);
+            yield return Time.deltaTime;
+        }
+        transform.position = newPoint;
+        rigid.isKinematic = false;
+        Disable();
     }
 
 
@@ -30,32 +91,6 @@ public class Crate : MonoBehaviour ,IInteractible
 
 
 
-
-
-    /*private bool PlayerIsNear = false;
-	private PlayerController player;
-
-
-	
-
-	void OnCollisionStay(Collision collisionInfo)
-	{
-		Debug.Log(collisionInfo.gameObject.name);
-		if (collisionInfo.gameObject.tag=="Player")
-		{
-			if (Input.GetKey(KeyCode.E))
-			{
-				PlayerIsNear = true;
-				Player = collisionInfo.gameObject;
-				Debug.Log(Player.transform.eulerAngles);
-			}
-		}
-	}
-
-	void OnCollisionExit(Collision collision)
-	{
-		if (collision.gameObject.tag=="Player")
-			PlayerIsNear = false;
-	}*/
+    
 
 }
