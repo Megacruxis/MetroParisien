@@ -2,21 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ladder : MonoBehaviour
+public class Ladder : MonoBehaviour, IInteractible
 {
-    [SerializeField] private GameObject Player;
-	[SerializeField] private float VerticalSpeed; 
+    [SerializeField] private PlayerController player;
+	[SerializeField] private float verticalSpeed;
+	[SerializeField] private float timeClimb;
 
-	private Rigidbody PlayerRigidbody; 
-	private bool isClimbing = false;
-	private Vector3 VerticalMove;
+	private bool isClimbing;
 
-	void Start()
+    public bool isActive { get ; set  ; }
+
+    void Awake()
 	{
-		PlayerRigidbody = Player.GetComponent<Rigidbody>();
+        if (player == null)
+        {
+			player = FindAnyObjectByType<PlayerController>();
+        }
+		isClimbing = false;
 	}
-	
-	void OnCollisionExit(Collision collisionInfo)
+
+	public void Activate()
+	{
+		isActive = true;
+		StartCoroutine(ClimbLader());
+	}
+
+	public void Disable()
+	{
+		isActive = false;
+	}
+
+	public IEnumerator ClimbLader()
+    {
+		isClimbing = true;
+		player.pMovement.canMove = false;
+		float currentTime = 0;
+        while(isActive || currentTime < timeClimb)
+        {
+			player.characController.Move(Vector3.up * verticalSpeed * Time.deltaTime);
+			currentTime += Time.deltaTime;
+			yield return Time.deltaTime;
+        }
+		player.pMovement.canMove = true;
+		isClimbing = false;
+		Disable();
+    }
+
+	/*void OnCollisionExit(Collision collisionInfo)
 	{
 		isClimbing = false;
 	}
@@ -38,5 +70,7 @@ public class Ladder : MonoBehaviour
 				PlayerRigidbody.AddForce(VerticalMove);
 			}
 		}
-	}
+	}*/
+
+
 }
