@@ -29,12 +29,12 @@ public class Ladder : MonoBehaviour
 
 			if (Input.anyKeyDown){
 				isClimbing = false;
+				Debug.Log(isClimbing);
 			}
 
-			while (isClimbing)
+			if (isClimbing)
 			{
 				VerticalMove = new Vector3(0, Time.deltaTime * VerticalSpeed, 0);
-				// Debug.Log(verticalInput);  		
 				PlayerRigidbody.AddForce(VerticalMove);
 			}
 		}
