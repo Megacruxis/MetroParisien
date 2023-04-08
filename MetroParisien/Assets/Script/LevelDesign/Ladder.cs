@@ -24,7 +24,7 @@ public class Ladder : MonoBehaviour
 	void OnCollisionStay(Collision collisionInfo)
 	{
 		if (collisionInfo.gameObject==Player){
-			if (Input.GetKey("e"))
+			if (Input.GetKey(KeyCode.E))
 				isClimbing = true;
 
 			if (Input.anyKeyDown){
