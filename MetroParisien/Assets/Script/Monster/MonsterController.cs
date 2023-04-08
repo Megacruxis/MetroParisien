@@ -12,6 +12,9 @@ public class MonsterController : MonoBehaviour
     [SerializeField]
     private bool isChassing;
 
+    [SerializeField]
+    private ChaseEventDispatcherScriptable chaseEventDispatcher;
+
     void Awake()
     {
         if(targetPostion == null)
@@ -22,6 +25,22 @@ public class MonsterController : MonoBehaviour
         {
             agent = GetComponent<NavMeshAgent>();
         }
+        if(chaseEventDispatcher == null)
+        {
+            Debug.LogError("Missing reference to chaseEventDispatcher of type ChaseEventDispatcherScriptable");
+        }
+    }
+
+    private void OnEnable()
+    {
+        chaseEventDispatcher.dispatchedEvents[ChaseEventDispatcherScriptable.START_CHASE_EVENT_INDEX].AddListener(StartChase); 
+        chaseEventDispatcher.dispatchedEvents[ChaseEventDispatcherScriptable.STOP_CHASE_EVENT_INDEX].AddListener(StopChase); 
+    }
+
+    private void OnDisable()
+    {
+        chaseEventDispatcher.dispatchedEvents[ChaseEventDispatcherScriptable.START_CHASE_EVENT_INDEX].RemoveListener(StartChase);
+        chaseEventDispatcher.dispatchedEvents[ChaseEventDispatcherScriptable.STOP_CHASE_EVENT_INDEX].RemoveListener(StopChase);
     }
 
     private void StartChase()
