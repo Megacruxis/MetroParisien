@@ -2,9 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crate : MonoBehaviour
+public class Crate : MonoBehaviour ,IInteractible
 {
-	private bool PlayerIsNear = false;
+	private bool playerInRange;
+
+    public bool isActive { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
+    public void Activate()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Disable()
+    {
+        throw new System.NotImplementedException();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*private bool PlayerIsNear = false;
 	private PlayerController player;
 
 
@@ -28,6 +56,6 @@ public class Crate : MonoBehaviour
 	{
 		if (collision.gameObject.tag=="Player")
 			PlayerIsNear = false;
-	}
+	}*/
 
 }
