@@ -34,6 +34,7 @@ public class WallButton : MonoBehaviour, IButton
 		} 
 		else
 		{
+			Debug.Log("oui");
 			if (!CanInteract()){
 				PlayerIsNear = false;
 				//Retire UI
