@@ -10,6 +10,8 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private string zAxieInput;
     [SerializeField] private string jumpInput;
 
+    [Header("Interaction")]
+    [SerializeField] private string interactInput;
 
 
     PlayerController pControler;
@@ -24,6 +26,9 @@ public class PlayerInput : MonoBehaviour
 
     public bool GetJumpInput() => Input.GetButton(jumpInput);
     public bool GetJumpInputUp() => Input.GetButtonUp(jumpInput);
+
+    public bool GetInteractInput() => Input.GetButtonDown(interactInput);
+
 
 
 }
