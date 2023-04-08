@@ -8,8 +8,6 @@ public class Ladder : MonoBehaviour, IInteractible
 	[SerializeField] private float verticalSpeed;
 	[SerializeField] private float timeClimb;
 
-	private bool isClimbing;
-
     public bool isActive { get ; set  ; }
 
     void Awake()
@@ -18,7 +16,6 @@ public class Ladder : MonoBehaviour, IInteractible
         {
 			player = FindAnyObjectByType<PlayerController>();
         }
-		isClimbing = false;
 	}
 
 	public void Activate()
@@ -34,7 +31,6 @@ public class Ladder : MonoBehaviour, IInteractible
 
 	public IEnumerator ClimbLader()
     {
-		isClimbing = true;
 		player.pMovement.canMove = false;
 		float currentTime = 0;
         while(isActive || currentTime < timeClimb)
@@ -44,7 +40,6 @@ public class Ladder : MonoBehaviour, IInteractible
 			yield return Time.deltaTime;
         }
 		player.pMovement.canMove = true;
-		isClimbing = false;
 		Disable();
     }
 
