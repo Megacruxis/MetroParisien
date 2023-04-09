@@ -66,16 +66,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if (direction.magnitude == 0)
         {
+            pControler.pSfx.walkSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             currentSpeed = 0;
         }
         else if(direction.magnitude < minValueToAccel)
         {
             if (GroundCheck())
             {
+                pControler.pSfx.walkSoundInstance.start();
                 currentSpeed = Math.Clamp(currentSpeed - (accelerationMovement * Time.deltaTime), initialMovementSpeed, maxMovementSpeed);
             }
             else
             {
+                pControler.pSfx.walkSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                 currentSpeed = Math.Clamp(currentSpeed - (accelerationMovement * Time.deltaTime), initialAirMovementSpeed, maxAirMovementSpeed);
             }
         }
@@ -83,10 +86,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if (GroundCheck())
             {
+                pControler.pSfx.walkSoundInstance.start();
                 currentSpeed = Math.Clamp(currentSpeed + (accelerationMovement * Time.deltaTime), initialMovementSpeed, maxMovementSpeed);
             }
             else
             {
+                pControler.pSfx.walkSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                 currentSpeed = Math.Clamp(currentSpeed + (accelerationMovement * Time.deltaTime), initialAirMovementSpeed, maxAirMovementSpeed);
             }
         }
@@ -128,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
             movementValue.y = jumpForce;
             pControler.pAnimation.TriggerJumpParameter();
             //pControler.pAnimation.ChangeIsJumpingParameter(true);
+            pControler.pSfx.jumpSoundInstance.start();
         }
         if(isJumping=true && pControler.pInput.GetJumpInput())
         {

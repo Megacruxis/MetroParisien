@@ -24,22 +24,28 @@ public class PlayerInteraction : MonoBehaviour
         Collider[] objects = Physics.OverlapCapsule(originDetection.position, originDetection.position + (originDetection.forward * lenghtDetection), raduisDetection, maskDetection);
         if (objects.Length == 0) {
 			interactibleObject = null;
-			return;	
+            pControler.pSfx.interactibleSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            return;	
 		} 
         foreach (var item in objects)
         {
             interactibleObject = item.GetComponent<IInteractible>();
-			//Debug.Log(interactibleObject);
-            if (interactibleObject != null) return;
+            //Debug.Log(interactibleObject);
+            if (interactibleObject != null) 
+            {
+                pControler.pSfx.interactibleSoundInstance.start();
+                return;
+            } 
         }
     }
 
     public void Interact()
     {
-        if (interactibleObject == null) return;
-        
+        if (interactibleObject == null||!pControler.pMovement.GroundCheck()) return;
+        Debug.Log("Can Interact");
         if (pControler.pInput.GetInteractInput() && !interactibleObject.isActive)
         {
+            Debug.Log("StartInteract");
             interactibleObject.Activate();
         }
 
