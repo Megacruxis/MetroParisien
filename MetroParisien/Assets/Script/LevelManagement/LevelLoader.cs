@@ -11,6 +11,12 @@ public class LevelLoader: MonoBehaviour
     [SerializeField]
     private CheckpointSaverScriptable checkpointSaver;
 
+    [SerializeField]
+    private string nextSceneName;
+
+    [SerializeField]
+    private LoadLevelEventDispatcherScriptable loadLevelEventDispatcher;
+
     private void Awake()
     {
         if(playerTransform == null)
@@ -22,6 +28,8 @@ public class LevelLoader: MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += SetPositionToLastCheckpoint;
+        loadLevelEventDispatcher.dispatchedEvents[LoadLevelEventDispatcherScriptable.LOAD_LEVEL_EVENT].AddListener(loadNextScene);
+        loadLevelEventDispatcher.dispatchedEvents[LoadLevelEventDispatcherScriptable.RELOAD_LEVEL_EVENT].AddListener(reloadScene);
     }
 
     private void OnDisable()
@@ -43,6 +51,11 @@ public class LevelLoader: MonoBehaviour
     public void reloadScene()
     {
         loadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void loadNextScene()
+    {
+        loadScene(nextSceneName);
     }
 
     public void loadScene(string sceneName)

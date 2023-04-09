@@ -188,6 +188,9 @@ MonoBehaviour:
   zAxieInput: Horizontal
   jumpInput: Fire1
   interactInput: Fire2
+  resetInput: Fire3
+  loadLevelScriptable: {fileID: 11400000, guid: f797e6a77e9c27b41ba8b5bdb92fc9ff,
+    type: 2}
 --- !u!114 &3437063973886680543
 MonoBehaviour:
   m_ObjectHideFlags: 0

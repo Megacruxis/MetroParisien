@@ -24,7 +24,8 @@ public class PlayerInteraction : MonoBehaviour
     public void GetInteractibleObject()
     {
         Collider[] objects = Physics.OverlapCapsule(originDetection.position, originDetection.position + (originDetection.forward * lenghtDetection), raduisDetection, maskDetection);
-        if (objects.Length == 0) {
+        if (objects.Length == 0) 
+        {
 			interactibleObject = null;
             if (soundOn)
             {
@@ -35,15 +36,18 @@ public class PlayerInteraction : MonoBehaviour
 		} 
         foreach (var item in objects)
         {
-            if (!soundOn)
-            {
-                interactibleObject = item.GetComponent<IInteractible>();
-                soundOn = true;
-            }
+            
+            interactibleObject = item.GetComponent<IInteractible>();
+            
             //Debug.Log(interactibleObject);
             if (interactibleObject != null) 
             {
-                pControler.pSfx.interactibleSoundInstance.start();
+                if (!soundOn)
+                {
+                    pControler.pSfx.interactibleSoundInstance.start();
+                    soundOn = true;
+                }
+
                 return;
             } 
         }
