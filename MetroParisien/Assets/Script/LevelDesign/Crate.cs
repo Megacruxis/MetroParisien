@@ -23,14 +23,20 @@ public class Crate : MonoBehaviour ,IInteractible
 
     public bool isActive { get ; set ; }
 
+    private void Awake()
+    {
+        isActive = false;
+    }
+
     public void Activate()
     {
-        Debug.Log("Start");
+        if (isActive) return;
+        //Debug.Log("Start");
         Vector3 directionToMove = GetMoveDirection();
-        Debug.Log(directionToMove);
+        //Debug.Log(directionToMove);
         if (CheckIfCrateCanMove(directionToMove))
         {
-            Debug.Log("StartCoroutine");
+            //Debug.Log("StartCoroutine");
             StartCoroutine(MovingCrate(directionToMove));
         }
         
@@ -71,7 +77,7 @@ public class Crate : MonoBehaviour ,IInteractible
         isActive = true;
         Vector3 newPoint = transform.position + Direction * distanceMovement;
         rigid.isKinematic = true;
-        Debug.Log("Start Moving");
+        //Debug.Log("Start Moving");
         while (Vector3.Distance(newPoint,transform.position)>0.05f)
         {
             transform.Translate(Direction * vitesseMovement * Time.deltaTime);

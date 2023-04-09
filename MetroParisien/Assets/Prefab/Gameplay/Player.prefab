@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876345063670987084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originDetection: {fileID: 8311376742719306251}
-  raduisDetection: 0.5
-  lenghtDetection: 1
+  raduisDetection: 0.3
+  lenghtDetection: 0.8
   maskDetection:
     serializedVersion: 2
     m_Bits: 64
@@ -230,6 +230,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c9a65d5b403d249bcf6843bd2b19bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSoundEvent:
+    Guid:
+      Data1: 1534510730
+      Data2: 1206427083
+      Data3: -941628009
+      Data4: -1719179261
+    Path: event:/Character/RunningReverb
+  jumpSoundEvent:
+    Guid:
+      Data1: 1305897794
+      Data2: 1313178661
+      Data3: -876072048
+      Data4: -1040959342
+    Path: event:/Character/Jump
+  landingSoundEvent:
+    Guid:
+      Data1: -242862908
+      Data2: 1127310303
+      Data3: -1266142813
+      Data4: 1326120298
+    Path: event:/Character/Landing
+  interactibleSoundEvent:
+    Guid:
+      Data1: 72651103
+      Data2: 1234440932
+      Data3: 1405531796
+      Data4: -522774345
+    Path: event:/Interaction/ActionFeedback
 --- !u!114 &7172237132362281995
 MonoBehaviour:
   m_ObjectHideFlags: 0

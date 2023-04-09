@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundCheckRaduis;
     [SerializeField] private LayerMask groundCheckMask;
 
+    private bool soundOn;
 
     PlayerController pControler;
     internal void Initialize()
@@ -47,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
         jumpTime = 0;
         movementValue = Vector3.zero;
         canMove = true;
+        soundOn = false;
     }
 
     public void Move(CharacterController chara,Vector3 direction)
@@ -66,16 +68,31 @@ public class PlayerMovement : MonoBehaviour
     {
         if (direction.magnitude == 0)
         {
+            if (soundOn)
+            {
+                pControler.pSfx.walkSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                soundOn = false;
+            }
             currentSpeed = 0;
         }
         else if(direction.magnitude < minValueToAccel)
         {
             if (GroundCheck())
             {
+                if (!soundOn)
+                {
+                    pControler.pSfx.walkSoundInstance.start();
+                    soundOn = true;
+                }
                 currentSpeed = Math.Clamp(currentSpeed - (accelerationMovement * Time.deltaTime), initialMovementSpeed, maxMovementSpeed);
             }
             else
             {
+                if (soundOn)
+                {
+                    pControler.pSfx.walkSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    soundOn = false;
+                }
                 currentSpeed = Math.Clamp(currentSpeed - (accelerationMovement * Time.deltaTime), initialAirMovementSpeed, maxAirMovementSpeed);
             }
         }
@@ -83,10 +100,20 @@ public class PlayerMovement : MonoBehaviour
         {
             if (GroundCheck())
             {
+                if (!soundOn)
+                {
+                    pControler.pSfx.walkSoundInstance.start();
+                    soundOn = true;
+                }
                 currentSpeed = Math.Clamp(currentSpeed + (accelerationMovement * Time.deltaTime), initialMovementSpeed, maxMovementSpeed);
             }
             else
             {
+                if (soundOn)
+                {
+                    pControler.pSfx.walkSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    soundOn = false;
+                }
                 currentSpeed = Math.Clamp(currentSpeed + (accelerationMovement * Time.deltaTime), initialAirMovementSpeed, maxAirMovementSpeed);
             }
         }
@@ -128,6 +155,7 @@ public class PlayerMovement : MonoBehaviour
             movementValue.y = jumpForce;
             pControler.pAnimation.TriggerJumpParameter();
             //pControler.pAnimation.ChangeIsJumpingParameter(true);
+            pControler.pSfx.jumpSoundInstance.start();
         }
         if(isJumping=true && pControler.pInput.GetJumpInput())
         {
