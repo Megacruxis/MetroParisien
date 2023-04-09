@@ -119,7 +119,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -137,18 +137,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487389ff3cd096f43ac3781359f569a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMovementSpeed: 10
-  initialMovementSpeed: 5
-  accelerationMovement: 5
+  maxMovementSpeed: 4
+  initialMovementSpeed: 3
+  accelerationMovement: 2
   minValueToAccel: 0.804
-  canMove: 0
-  gravityValue: -9.81
+  canMove: 1
+  maxAirMovementSpeed: 2.25
+  initialAirMovementSpeed: 1
+  gravityValue: -19.62
   groundedGravityValue: -2
   gravityDirection: {x: 0, y: -1, z: 0}
   jumpForce: 5
-  maxJumpTime: 0.25
+  maxJumpTime: 0.1
   groundCheckOrigin: {fileID: 1159743307647187123}
-  groundCheckRaduis: 0.5
+  groundCheckRaduis: 0.25
   groundCheckMask:
     serializedVersion: 2
     m_Bits: 4160
