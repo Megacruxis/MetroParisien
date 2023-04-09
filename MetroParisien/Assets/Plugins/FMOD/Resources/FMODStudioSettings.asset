@@ -551,8 +551,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../fmodParisien/FmodParisien.fspro
-  sourceBankPath: ../fmodParisien/Build
+  sourceProjectPath: ../FmodParisien/FmodParisien.fspro
+  sourceBankPath: ../FmodParisien/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
