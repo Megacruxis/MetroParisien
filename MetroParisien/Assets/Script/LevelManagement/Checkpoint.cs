@@ -8,6 +8,9 @@ public class Checkpoint : MonoBehaviour
     [SerializeField]
     private CheckpointSaverScriptable checkpointSaver;
 
+    [SerializeField]
+    private Vector3 checkpointPosition = Vector3.zero;
+
     [Header("Fmod checkpoint reached sound")]
     public EventReference checkpointReachedEvent;
     FMOD.Studio.EventInstance checkpointReachedInstance;
@@ -17,6 +20,10 @@ public class Checkpoint : MonoBehaviour
     private void Start()
     {
         checkpointReachedInstance = RuntimeManager.CreateInstance(checkpointReachedEvent);
+        if(checkpointSaver.furthestCheckpointReachedPosition == checkpointPosition)
+        {
+            alreadyReched = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,7 +31,7 @@ public class Checkpoint : MonoBehaviour
         if (!alreadyReched && other.gameObject.tag == "Player")
         {
             checkpointReachedInstance.start();
-            checkpointSaver.furthestCheckpointReachedPosition = transform.position;
+            checkpointSaver.furthestCheckpointReachedPosition = checkpointPosition;
             alreadyReched = true;
         }
     }
