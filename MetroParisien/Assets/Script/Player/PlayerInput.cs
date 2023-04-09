@@ -38,7 +38,7 @@ public class PlayerInput : MonoBehaviour
 
     public void StartReset()
     {
-        loadLevelScriptable.DisptachLoadLevel();
+        loadLevelScriptable.DisptachReloadLevel();
     }
 
 }
