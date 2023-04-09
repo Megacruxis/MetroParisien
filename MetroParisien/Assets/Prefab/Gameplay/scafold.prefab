@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8974343104898907333}
-  m_Layer: 0
-  m_Name: GameObject (9)
+  - component: {fileID: 174020828628045858}
+  m_Layer: 6
+  m_Name: scafold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571495605403548854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.632911, y: 2.3132663, z: 42.394257}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -32,6 +33,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &174020828628045858
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571495605403548854}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6867333924686341062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47,17 +61,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d1918918c624f3e4aa83a00c513b345a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.63291097
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d1918918c624f3e4aa83a00c513b345a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6867337
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d1918918c624f3e4aa83a00c513b345a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.6057434
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d1918918c624f3e4aa83a00c513b345a,
         type: 3}
@@ -98,6 +112,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 1x3_Scaffold
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1918918c624f3e4aa83a00c513b345a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1918918c624f3e4aa83a00c513b345a, type: 3}
