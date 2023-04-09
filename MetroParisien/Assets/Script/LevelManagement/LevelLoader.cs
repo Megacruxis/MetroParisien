@@ -11,6 +11,7 @@ public class LevelLoader: MonoBehaviour
     [SerializeField]
     private CheckpointSaverScriptable checkpointSaver;
 
+    [SerializeField]
     private string nextSceneName;
 
     [SerializeField]
