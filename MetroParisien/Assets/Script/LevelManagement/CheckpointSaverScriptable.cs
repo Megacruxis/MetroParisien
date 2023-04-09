@@ -6,5 +6,14 @@ using UnityEngine;
 public class CheckpointSaverScriptable : ScriptableObject
 {
     public string linkedSceneName = "MainMenu";
+    public bool teleportOnNextLoad = true;
     public Vector3 furthestCheckpointReachedPosition = Vector3.zero;
+
+    private void OnEnable()
+    {
+        if(furthestCheckpointReachedPosition == Vector3.zero)
+        {
+            teleportOnNextLoad = false;
+        }
+    }
 }
