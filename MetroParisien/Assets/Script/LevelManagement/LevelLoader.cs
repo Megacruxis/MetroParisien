@@ -31,6 +31,11 @@ public class LevelLoader: MonoBehaviour
 
     private void SetPositionToLastCheckpoint(Scene scene, LoadSceneMode mode)
     {
+        if(!checkpointSaver.teleportOnNextLoad)
+        {
+            checkpointSaver.teleportOnNextLoad = true;
+            return;
+        }
         playerTransform.position = checkpointSaver.furthestCheckpointReachedPosition;
     }
 

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Level1CheckpointSaver
   m_EditorClassIdentifier: 
   linkedSceneName: Thomas_WIP
-  furthestCheckpointReachedPosition: {x: -0.5, y: -0.9, z: -1}
+  teleportOnNextLoad: 1
+  furthestCheckpointReachedPosition: {x: 0.5, y: -0.9, z: -1}
