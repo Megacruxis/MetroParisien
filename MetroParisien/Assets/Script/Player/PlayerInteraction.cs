@@ -12,11 +12,13 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private LayerMask maskDetection;
 
     private IInteractible interactibleObject;
+    private bool soundOn;
 
     PlayerController pControler;
     internal void Initialize()
     {
         pControler = GetComponent<PlayerController>();
+        soundOn = false;
     }
 
     public void GetInteractibleObject()
@@ -24,22 +26,36 @@ public class PlayerInteraction : MonoBehaviour
         Collider[] objects = Physics.OverlapCapsule(originDetection.position, originDetection.position + (originDetection.forward * lenghtDetection), raduisDetection, maskDetection);
         if (objects.Length == 0) {
 			interactibleObject = null;
-			return;	
+            if (soundOn)
+            {
+                pControler.pSfx.interactibleSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                soundOn = false;
+            }
+            return;	
 		} 
         foreach (var item in objects)
         {
-            interactibleObject = item.GetComponent<IInteractible>();
-			//Debug.Log(interactibleObject);
-            if (interactibleObject != null) return;
+            if (!soundOn)
+            {
+                interactibleObject = item.GetComponent<IInteractible>();
+                soundOn = true;
+            }
+            //Debug.Log(interactibleObject);
+            if (interactibleObject != null) 
+            {
+                pControler.pSfx.interactibleSoundInstance.start();
+                return;
+            } 
         }
     }
 
     public void Interact()
     {
-        if (interactibleObject == null) return;
-        
+        if (interactibleObject == null||!pControler.pMovement.GroundCheck()) return;
+        Debug.Log("Can Interact");
         if (pControler.pInput.GetInteractInput() && !interactibleObject.isActive)
         {
+            Debug.Log("StartInteract");
             interactibleObject.Activate();
         }
 
