@@ -359,7 +359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &102949659
 Transform:
   m_ObjectHideFlags: 0
@@ -708,6 +708,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkpointSaver: {fileID: 11400000, guid: 18ed478c2b2a54c448757e8623e8c611, type: 2}
+  checkpointReachedEvent:
+    Guid:
+      Data1: 1534510730
+      Data2: 1206427083
+      Data3: -941628009
+      Data4: -1719179261
+    Path: event:/Character/RunningReverb
 --- !u!4 &700163454 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ecdbc442ef1f7a949b1ae968edb89d0f,

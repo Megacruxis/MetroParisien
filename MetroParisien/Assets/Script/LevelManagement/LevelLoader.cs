@@ -17,8 +17,23 @@ public class LevelLoader: MonoBehaviour
         {
             Debug.LogError("Missing reference to playerTransform of type Vector3");
         }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += SetPositionToLastCheckpoint;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= SetPositionToLastCheckpoint;
+    }
+
+    private void SetPositionToLastCheckpoint(Scene scene, LoadSceneMode mode)
+    {
         playerTransform.position = checkpointSaver.furthestCheckpointReachedPosition;
     }
+
 
     public void reloadScene()
     {
