@@ -38,6 +38,8 @@ public class MusicManager : MonoBehaviour
     {
         chaseEventDispatcher.dispatchedEvents[ChaseEventDispatcherScriptable.START_CHASE_EVENT_INDEX].AddListener(PlayChaseMusic);
         chaseEventDispatcher.dispatchedEvents[ChaseEventDispatcherScriptable.STOP_CHASE_EVENT_INDEX].AddListener(PlayMainMusic);
+        mainMusicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        chaseMusicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
     private void PlayMainMusic()

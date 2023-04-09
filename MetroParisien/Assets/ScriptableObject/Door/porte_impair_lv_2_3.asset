@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80cbd14f6c58b3c44847daa7eb960128, type: 3}
-  m_Name: Level1CheckpointSaver
+  m_Script: {fileID: 11500000, guid: b48cd87a7cdaf00939e92d2b5949f91e, type: 3}
+  m_Name: porte_impair_lv_2_3
   m_EditorClassIdentifier: 
-  linkedSceneName: Thomas_WIP
-  teleportOnNextLoad: 0
-  furthestCheckpointReachedPosition: {x: 0, y: 0, z: 0}
+  dispatchedEvents:
+  - m_PersistentCalls:
+      m_Calls: []

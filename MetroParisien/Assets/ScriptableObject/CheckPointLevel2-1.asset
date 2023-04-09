@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80cbd14f6c58b3c44847daa7eb960128, type: 3}
-  m_Name: Level1CheckpointSaver
+  m_Name: CheckPointLevel2-1
   m_EditorClassIdentifier: 
-  linkedSceneName: Thomas_WIP
-  teleportOnNextLoad: 0
+  linkedSceneName: Niveaux2-1
+  teleportOnNextLoad: 1
   furthestCheckpointReachedPosition: {x: 0, y: 0, z: 0}
