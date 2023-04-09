@@ -15,6 +15,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movementValue;
     public bool canMove;
 
+    [Header("Air Speed")]
+    [SerializeField] private float maxAirMovementSpeed;
+    [SerializeField] private float initialAirMovementSpeed;
+
     [Header("Gravity")]
     [SerializeField] private float gravityValue;
     [SerializeField] private float groundedGravityValue;
@@ -66,11 +70,25 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(direction.magnitude < minValueToAccel)
         {
-            currentSpeed = Math.Clamp(currentSpeed - (accelerationMovement * Time.deltaTime), initialMovementSpeed, maxMovementSpeed);
+            if (GroundCheck())
+            {
+                currentSpeed = Math.Clamp(currentSpeed - (accelerationMovement * Time.deltaTime), initialMovementSpeed, maxMovementSpeed);
+            }
+            else
+            {
+                currentSpeed = Math.Clamp(currentSpeed - (accelerationMovement * Time.deltaTime), initialAirMovementSpeed, maxAirMovementSpeed);
+            }
         }
         else
         {
-            currentSpeed = Math.Clamp(currentSpeed + (accelerationMovement * Time.deltaTime), initialMovementSpeed, maxMovementSpeed);
+            if (GroundCheck())
+            {
+                currentSpeed = Math.Clamp(currentSpeed + (accelerationMovement * Time.deltaTime), initialMovementSpeed, maxMovementSpeed);
+            }
+            else
+            {
+                currentSpeed = Math.Clamp(currentSpeed + (accelerationMovement * Time.deltaTime), initialAirMovementSpeed, maxAirMovementSpeed);
+            }
         }
 
         Vector3 DirectionSpeed = direction * currentSpeed;
