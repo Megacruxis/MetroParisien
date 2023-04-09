@@ -83,13 +83,14 @@ public class Crate : MonoBehaviour ,IInteractible
         Vector3 newPoint = transform.position + Direction * distanceMovement;
         rigid.isKinematic = true;
         //Debug.Log("Start Moving");
-        while (Vector3.Distance(newPoint,transform.position)>minDistanceMovementCheck)
+        /*while (Vector3.Distance(newPoint,transform.position)>minDistanceMovementCheck)
         {
             transform.Translate(Direction * vitesseMovement * Time.deltaTime);
             bakeNavemeshEventDispatcher.DisatchBakeNavemesh();
             yield return Time.deltaTime;
-        }
+        }*/
         transform.position = newPoint;
+        yield return new WaitForSeconds(Time.deltaTime);
         pControler.pMovement.canMove = true;
         rigid.isKinematic = false;
         Disable();
