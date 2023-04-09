@@ -105,6 +105,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   movementRaduisCheck: 0.3
+  bakeNavemeshEventDispatcher: {fileID: 11400000, guid: 05ee3e3ae7fd444429ad99dbeeee1185,
+    type: 2}
 --- !u!65 &5308281845912776783
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -117,7 +119,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0.5, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &2353757298730131067
 PrefabInstance:
   m_ObjectHideFlags: 0
