@@ -29,7 +29,7 @@ public class PlayerInteraction : MonoBehaviour
         foreach (var item in objects)
         {
             interactibleObject = item.GetComponent<IInteractible>();
-			Debug.Log(interactibleObject);
+			//Debug.Log(interactibleObject);
             if (interactibleObject != null) return;
         }
     }

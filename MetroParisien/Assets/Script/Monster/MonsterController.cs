@@ -15,6 +15,9 @@ public class MonsterController : MonoBehaviour
     [SerializeField]
     private ChaseEventDispatcherScriptable chaseEventDispatcher;
 
+    [SerializeField]
+    private LevelLoader levelLoader;
+
     void Awake()
     {
         if(targetPostion == null)
@@ -41,6 +44,14 @@ public class MonsterController : MonoBehaviour
     {
         chaseEventDispatcher.dispatchedEvents[ChaseEventDispatcherScriptable.START_CHASE_EVENT_INDEX].RemoveListener(StartChase);
         chaseEventDispatcher.dispatchedEvents[ChaseEventDispatcherScriptable.STOP_CHASE_EVENT_INDEX].RemoveListener(StopChase);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            levelLoader.reloadScene();
+        }
     }
 
     private void StartChase()
