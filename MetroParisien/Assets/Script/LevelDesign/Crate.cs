@@ -23,9 +23,12 @@ public class Crate : MonoBehaviour ,IInteractible
 
     public bool isActive { get ; set ; }
 
+    PlayerController pControler;
+
     private void Awake()
     {
         isActive = false;
+        pControler = FindAnyObjectByType<PlayerController>();
     }
 
     public void Activate()
@@ -75,6 +78,7 @@ public class Crate : MonoBehaviour ,IInteractible
     public IEnumerator MovingCrate(Vector3 Direction)
     {
         isActive = true;
+        pControler.pMovement.canMove = false;
         Vector3 newPoint = transform.position + Direction * distanceMovement;
         rigid.isKinematic = true;
         //Debug.Log("Start Moving");
@@ -85,6 +89,7 @@ public class Crate : MonoBehaviour ,IInteractible
             yield return Time.deltaTime;
         }
         transform.position = newPoint;
+        pControler.pMovement.canMove = true;
         rigid.isKinematic = false;
         Disable();
     }

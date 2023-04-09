@@ -84,12 +84,12 @@ PrefabInstance:
     - target: {fileID: 4057130822145721306, guid: 94ed0f00972b22706a75869273a63029,
         type: 3}
       propertyPath: m_Size.y
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4057130822145721306, guid: 94ed0f00972b22706a75869273a63029,
         type: 3}
       propertyPath: m_Center.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4057130822145721307, guid: 94ed0f00972b22706a75869273a63029,
         type: 3}
@@ -149,7 +149,12 @@ PrefabInstance:
     - target: {fileID: 4057130822145721308, guid: 94ed0f00972b22706a75869273a63029,
         type: 3}
       propertyPath: m_Name
-      value: LadderT4
+      value: LadderT4 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057130822145721309, guid: 94ed0f00972b22706a75869273a63029,
+        type: 3}
+      propertyPath: timeClimb
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94ed0f00972b22706a75869273a63029, type: 3}
