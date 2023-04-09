@@ -13,6 +13,11 @@ public class PlayerInput : MonoBehaviour
     [Header("Interaction")]
     [SerializeField] private string interactInput;
 
+    [Header("reset")]
+    [SerializeField] private string resetInput;
+
+    [SerializeField] LoadLevelEventDispatcherScriptable loadLevelScriptable;
+
 
     PlayerController pControler;
     internal void Initialize()
@@ -29,6 +34,11 @@ public class PlayerInput : MonoBehaviour
 
     public bool GetInteractInput() => Input.GetButtonDown(interactInput);
 
+    public bool GetResetInput() => Input.GetButtonDown(resetInput);
 
+    public void StartReset()
+    {
+        loadLevelScriptable.DisptachLoadLevel();
+    }
 
 }
