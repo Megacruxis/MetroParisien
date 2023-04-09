@@ -32159,6 +32159,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3827028687628465988, guid: f1ddea4c26ffc9b4186baf797c2d397c,
+        type: 3}
+      propertyPath: checkpointSaver
+      value: 
+      objectReference: {fileID: 11400000, guid: 21c1afeddcb0b0b42be2b7510bcb80f2,
+        type: 2}
     - target: {fileID: 8151490106176868374, guid: f1ddea4c26ffc9b4186baf797c2d397c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32197,7 +32203,7 @@ PrefabInstance:
     - target: {fileID: 8151490106699306225, guid: f1ddea4c26ffc9b4186baf797c2d397c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4
+      value: -2.879
       objectReference: {fileID: 0}
     - target: {fileID: 8151490106699306225, guid: f1ddea4c26ffc9b4186baf797c2d397c,
         type: 3}
