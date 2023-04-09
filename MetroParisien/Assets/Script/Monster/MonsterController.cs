@@ -1,6 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class MonsterController : MonoBehaviour
 {
     [SerializeField]
@@ -18,6 +20,9 @@ public class MonsterController : MonoBehaviour
     [SerializeField]
     private LevelLoader levelLoader;
 
+    [SerializeField]
+    public AnimationCurve m_Curve = new AnimationCurve();
+
     void Awake()
     {
         if(targetPostion == null)
@@ -31,6 +36,20 @@ public class MonsterController : MonoBehaviour
         if(chaseEventDispatcher == null)
         {
             Debug.LogError("Missing reference to chaseEventDispatcher of type ChaseEventDispatcherScriptable");
+        }
+    }
+
+    IEnumerator Start()
+    {
+        agent.autoTraverseOffMeshLink = false;
+        while (true)
+        {
+            if (agent.isOnOffMeshLink)
+            {
+                yield return StartCoroutine(Curve(agent, 0.75f));
+                agent.CompleteOffMeshLink();
+            }
+            yield return null;
         }
     }
 
@@ -70,6 +89,21 @@ public class MonsterController : MonoBehaviour
         if (isChassing)
         {
             agent.SetDestination(targetPostion.position);
+        }
+    }
+
+    IEnumerator Curve(NavMeshAgent agent, float duration)
+    {
+        OffMeshLinkData data = agent.currentOffMeshLinkData;
+        Vector3 startPos = agent.transform.position;
+        Vector3 endPos = data.endPos + Vector3.up * agent.baseOffset;
+        float normalizedTime = 0.0f;
+        while (normalizedTime < 1.0f)
+        {
+            float yOffset = m_Curve.Evaluate(normalizedTime);
+            agent.transform.position = Vector3.Lerp(startPos, endPos, normalizedTime) + yOffset * Vector3.up;
+            normalizedTime += Time.deltaTime / duration;
+            yield return null;
         }
     }
 }

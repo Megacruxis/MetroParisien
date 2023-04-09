@@ -17,7 +17,10 @@ public class Crate : MonoBehaviour ,IInteractible
 
     [Header("MovementCheck")]
     [SerializeField] private float movementRaduisCheck;
-	
+
+    [Header("Event disptacher")]
+    [SerializeField] private BakeNavemeshEventDispatcherScriptable bakeNavemeshEventDispatcher;
+
     public bool isActive { get ; set ; }
 
     public void Activate()
@@ -72,6 +75,7 @@ public class Crate : MonoBehaviour ,IInteractible
         while (Vector3.Distance(newPoint,transform.position)>0.05f)
         {
             transform.Translate(Direction * vitesseMovement * Time.deltaTime);
+            bakeNavemeshEventDispatcher.DisatchBakeNavemesh();
             yield return Time.deltaTime;
         }
         transform.position = newPoint;
