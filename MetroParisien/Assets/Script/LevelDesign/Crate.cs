@@ -6,8 +6,9 @@ public class Crate : MonoBehaviour ,IInteractible
 {
     [Header("Movement")]
     [SerializeField] private float distanceMovement;
-    [SerializeField] private float vitesseMovement;
+    [SerializeField] private float vitesseMovement = 3;
     [SerializeField] private Rigidbody rigid;
+    [SerializeField] private float minDistanceMovementCheck=0.15f;
 
     [Header("Direction Check")]
     [SerializeField] private Transform checkOrigin;
@@ -82,13 +83,14 @@ public class Crate : MonoBehaviour ,IInteractible
         Vector3 newPoint = transform.position + Direction * distanceMovement;
         rigid.isKinematic = true;
         //Debug.Log("Start Moving");
-        while (Vector3.Distance(newPoint,transform.position)>0.05f)
+        /*while (Vector3.Distance(newPoint,transform.position)>minDistanceMovementCheck)
         {
             transform.Translate(Direction * vitesseMovement * Time.deltaTime);
             bakeNavemeshEventDispatcher.DisatchBakeNavemesh();
             yield return Time.deltaTime;
-        }
+        }*/
         transform.position = newPoint;
+        yield return new WaitForSeconds(Time.deltaTime);
         pControler.pMovement.canMove = true;
         rigid.isKinematic = false;
         Disable();
