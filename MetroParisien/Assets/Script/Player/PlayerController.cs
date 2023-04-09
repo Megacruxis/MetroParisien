@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
         pMovement.Move(characController,pInput.GetMovementDirection());
         pInteraction.GetInteractibleObject();
         pInteraction.Interact();
+        if (pInput.GetResetInput()) pInput.StartReset();
     }
 
 
